@@ -32,7 +32,7 @@ namespace Tankmageddon.Nagibator.BehaviourModules
 
             var triggerHitCondition = new Condition("too_close_to_walls", c =>
             {
-                const int wallMargin = 100;
+                const int wallMargin = 300;
                 return (
                     (me.X <= wallMargin ||
                      me.X >= me.BattleFieldWidth - wallMargin ||
@@ -40,6 +40,7 @@ namespace Tankmageddon.Nagibator.BehaviourModules
                      me.Y >= me.BattleFieldHeight - wallMargin)
                 );
             });
+
             me.AddCustomEvent(triggerHitCondition);
         }
     }

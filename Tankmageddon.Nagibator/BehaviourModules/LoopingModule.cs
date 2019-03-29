@@ -19,8 +19,7 @@ namespace Tankmageddon.Nagibator.BehaviourModules
 
             if (!string.IsNullOrWhiteSpace(me.Target))
             {
-                GunModule.Action(me);
-                return;
+                ActionModule.Action(me);
             }
 
             me.Ahead(5000);

@@ -16,7 +16,7 @@ namespace Tankmageddon.Nagibator.EventModules
             switch (message[MessageType])
             {
                 case EnemyPositionMessage.Type:
-                    GunModule.NewTargetAction(me, message);
+                    ActionModule.NewTargetAction(me, message);
                     break;
                 default:
                     return;

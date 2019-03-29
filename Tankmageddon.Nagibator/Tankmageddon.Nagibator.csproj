@@ -44,7 +44,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BehaviourModules\GunModule.cs" />
+    <Compile Include="BehaviourModules\ActionModule.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Entities\Point.cs" />
     <Compile Include="EventModules\OnCustomEventModule.cs" />

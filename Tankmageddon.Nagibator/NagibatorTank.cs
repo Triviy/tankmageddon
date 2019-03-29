@@ -11,9 +11,9 @@ namespace Tankmageddon.Nagibator
         public string Target { get; set; }
         public Point TargetPoint { get; set; }
         public double TargetBearing { get; set; }
+        public double TargetDistance { get; set; }
 
-        public bool IsMoovingToEnemy { get; set; }
-
+        public bool IsMovingToEnemy { get; set; }
         public RobotStatus Status { get; set; }
         public int CurrentEnemiesAlive { get; set; }
         public int MoveDirection { get; set; } = 1;
