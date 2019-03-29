@@ -41,10 +41,12 @@ namespace Tankmageddon.Nagibator.BehaviourModules
             if (me.IsMovingToEnemy)
             {
                 me.IsMovingToEnemy = me.TargetDistance <= 300;
+                Console.WriteLine($"{nameof(ActionModule)}: [{nameof(me.IsMovingToEnemy)}:{me.IsMovingToEnemy}]");
             }
             else
             {
                 me.IsMovingToEnemy = me.TargetDistance >= 700;
+                Console.WriteLine($"{nameof(ActionModule)}: [{nameof(me.IsMovingToEnemy)}:{me.IsMovingToEnemy}]");
             }
 
             if (me.IsMovingToEnemy)
