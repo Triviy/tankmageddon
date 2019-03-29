@@ -9,8 +9,8 @@ namespace Tankmageddon.Nagibator.EventModules
         {
             Console.WriteLine($"{nameof(OnCustomEventModule)}: {e.Condition.Name}");
 
-            if (e.Condition.Name.Equals("too_close_to_walls"))
-                me.MoveDirection *= -1;
+            //if (e.Condition.Name.Equals("too_close_to_walls"))
+            //    me.MoveDirection *= -1;
         }
     }
 }

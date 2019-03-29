@@ -38,14 +38,22 @@ namespace Tankmageddon.Nagibator.BehaviourModules
 
             me.TurnGunRightRadians(Utils.NormalRelativeAngle(angleToTarget - me.GunHeadingRadians));
 
-            me.IsMovingToEnemy = me.IsMovingToEnemy ? me.TargetDistance <= 300 : me.TargetDistance >= 600;
             if (me.IsMovingToEnemy)
             {
-                //var x = me.TargetPoint.X - me.X;
-                //var y = me.TargetPoint.Y - me.Y;
-                //var goAngle = Utils.NormalRelativeAngle(Math.Atan2(x, y) - me.HeadingRadians);
-                //me.SetTurnRightRadians(Math.Atan(Math.Tan(goAngle)));
-                //me.SetAhead(Math.Cos(goAngle) * Hypotenuse(x, y));
+                me.IsMovingToEnemy = me.TargetDistance <= 300;
+            }
+            else
+            {
+                me.IsMovingToEnemy = me.TargetDistance >= 700;
+            }
+
+            if (me.IsMovingToEnemy)
+            {
+                var x = me.TargetPoint.X - me.X;
+                var y = me.TargetPoint.Y - me.Y;
+                var goAngle = Utils.NormalRelativeAngle(Math.Atan2(x, y) - me.HeadingRadians);
+                me.SetTurnRightRadians(Math.Atan(Math.Tan(goAngle)));
+                me.SetAhead(Math.Cos(goAngle) * Hypotenuse(x, y) - 500);
             }
             else
             {
@@ -55,10 +63,11 @@ namespace Tankmageddon.Nagibator.BehaviourModules
                 me.SetAhead(1000 * me.MoveDirection);
             }
         }
+
         public static double Hypotenuse(double x, double y)
         {
             return Math.Sqrt(Math.Pow(x, 2) + Math.Pow(y, 2));
         }
 
-}
+    }
 }

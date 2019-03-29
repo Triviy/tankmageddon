@@ -10,7 +10,6 @@ namespace Tankmageddon.Nagibator.BehaviourModules
         {
             Console.WriteLine("I'm started");
             me.IsAdjustGunForRobotTurn = true;
-            me.IsAdjustRadarForRobotTurn = true;
             foreach (var gameEvent in me.GetAllEvents())
             {
                 switch (gameEvent)

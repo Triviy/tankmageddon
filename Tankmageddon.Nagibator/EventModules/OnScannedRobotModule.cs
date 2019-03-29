@@ -28,7 +28,7 @@ namespace Tankmageddon.Nagibator.EventModules
 
                 if (me.Target.Equals(e.Name))
                 {
-                    me.SetTurnRadarRight(2.0 * Utils.NormalRelativeAngleDegrees(me.Heading + e.Bearing - me.RadarHeading));
+                    //me.SetTurnRadarRight(2.0 * Utils.NormalRelativeAngleDegrees(me.Heading + e.Bearing - me.RadarHeading));
                     ActionModule.Action(me);
                     Console.WriteLine($"{nameof(OnScannedRobotModule)}: Fire to {e.Name}");
                     me.Fire(FireHelper.GetFirePower(me, e, enemyPosition));

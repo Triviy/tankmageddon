@@ -21,9 +21,11 @@ namespace Tankmageddon.Nagibator.BehaviourModules
             {
                 ActionModule.Action(me);
             }
-
-            me.Ahead(5000);
-            me.TurnRight(90);
+            else
+            {
+                me.Ahead(5000);
+                me.TurnRight(90);
+            }
         }
     }
 }
