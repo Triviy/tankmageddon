@@ -6,13 +6,11 @@ using static Tankmageddon.Nagibator.Constants.EnemyPositionMessage;
 
 namespace Tankmageddon.Nagibator.BehaviourModules
 {
-    public static class AttackTargetModule
+    public static class GunModule
     {
         public static void NewTargetAction(NagibatorTank me, Dictionary<string, string> message)
         {
-            Console.WriteLine($"{nameof(AttackTargetModule)}: Got new target {message[Name]}");
-            if (!string.IsNullOrWhiteSpace(me.Target))
-                return;
+            Console.WriteLine($"{nameof(GunModule)}: Got new target {message[Name]}");
             me.Target = message[Name];
             me.TargetPoint = new Point
             {
@@ -25,15 +23,14 @@ namespace Tankmageddon.Nagibator.BehaviourModules
         public static void Action(NagibatorTank me)
         {
             if (me.TargetPoint == null)
-                Console.WriteLine($"{nameof(AttackTargetModule)}: no target!");
+            {
+                Console.WriteLine($"{nameof(GunModule)}: no target!");
+                return;
+            }
 
             var angleToTarget = Math.Atan2(me.TargetPoint.X - me.X, me.TargetPoint.Y - me.Y);
-
-            //me.SetTurnRightRadians(Utils.NormalRelativeAngle(angleToTarget - me.HeadingRadians));
+            Console.WriteLine($"{nameof(GunModule)}: angle to target {angleToTarget}");
             me.TurnGunRightRadians(Utils.NormalRelativeAngle(angleToTarget - me.GunHeadingRadians));
-            me.Ahead(100);
-
-            //me.SetTurnRadarLeftRadians(Utils.NormalRelativeAngle(angleToTarget - me.RadarHeadingRadians));
         }
     }
 }

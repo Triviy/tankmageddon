@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Globalization;
 using Robocode;
+using Robocode.Util;
+using Tankmageddon.Nagibator.BehaviourModules;
 using Tankmageddon.Nagibator.Helpers;
 using static Tankmageddon.Nagibator.Constants.EnemyPositionMessage;
 
@@ -18,8 +20,16 @@ namespace Tankmageddon.Nagibator.EventModules
                 var enemyPosition = CoordHelper.GetEnemyCoordinate(me.Heading, me.Status, e);
                 if (string.IsNullOrWhiteSpace(me.Target))
                 {
-                    Console.WriteLine($"{nameof(OnMessageReceivedModule)}: Setting team target {e.Name}");
+                    Console.WriteLine($"{nameof(OnScannedRobotModule)}: Setting team target {e.Name}");
                     me.Target = e.Name;
+                }
+
+                if (me.Target.Equals(e.Name))
+                {
+                    me.SetTurnRadarRight(2.0 * Utils.NormalRelativeAngleDegrees(me.Heading + e.Bearing - me.RadarHeading));
+                    GunModule.Action(me);
+                    Console.WriteLine($"{nameof(OnScannedRobotModule)}: Fire to {e.Name}");
+                    me.Fire(FireHelper.GetFirePower(e, me.TargetPoint, enemyPosition));
 
                     MessageHelper.SendMessage(me, new Dictionary<string, string>
                     {
@@ -28,18 +38,13 @@ namespace Tankmageddon.Nagibator.EventModules
                         [X] = enemyPosition.X.ToString(CultureInfo.InvariantCulture),
                         [Y] = enemyPosition.Y.ToString(CultureInfo.InvariantCulture)
                     });
-                }
 
-                if (me.Target.Equals(e.Name))
-                {
-                    Console.WriteLine($"{nameof(OnMessageReceivedModule)}: Fire to {e.Name}");
-                    me.Fire(FireHelper.GetFirePower(e, me.TargetPoint, enemyPosition));
                     me.TargetPoint = enemyPosition;
                 }
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"{nameof(OnMessageReceivedModule)}: {ex}");
+                Console.WriteLine($"{nameof(OnScannedRobotModule)}: {ex}");
             }
         }
     }

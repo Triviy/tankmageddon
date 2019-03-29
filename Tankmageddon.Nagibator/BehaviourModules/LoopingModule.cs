@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace Tankmageddon.Nagibator.BehaviourModules
 {
@@ -6,11 +7,16 @@ namespace Tankmageddon.Nagibator.BehaviourModules
     {
         public static void Action(NagibatorTank me)
         {
+            me.SetTurnRadarRight(double.PositiveInfinity);
+
+            if (me.GetRobotDeathEvents()?.Any(e => e.Name.Equals(me.Target)) == true)
+                me.Target = null;
+
             Console.WriteLine("Loop started");
 
             if (!string.IsNullOrWhiteSpace(me.Target))
             {
-                AttackTargetModule.Action(me);
+                GunModule.Action(me);
                 return;
             }
 
