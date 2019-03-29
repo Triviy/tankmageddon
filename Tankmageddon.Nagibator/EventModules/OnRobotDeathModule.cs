@@ -12,7 +12,6 @@ namespace Tankmageddon.Nagibator.EventModules
         public static void Action(NagibatorTank me, RobotDeathEvent e)
         {
             Console.WriteLine($"{nameof(OnRobotDeathModule)}: {e.Name}");
-            e.Priority = 0;
             if (me.Target?.Equals(e.Name) == true)
             {
                 me.Target = null;

@@ -33,7 +33,7 @@ namespace Tankmageddon.Nagibator.EventModules
                 if (me.Target.Equals(e.Name))
                 {
                     Console.WriteLine($"{nameof(OnMessageReceivedModule)}: Fire to {e.Name}");
-                    me.SetFire(3);
+                    me.Fire(3);
                     me.TargetPoint = enemyPos;
                 }
             }

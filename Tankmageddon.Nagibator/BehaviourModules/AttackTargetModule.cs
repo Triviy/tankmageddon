@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using Robocode.Util;
+using Tankmageddon.Nagibator.Entities;
 using static Tankmageddon.Nagibator.Constants.EnemyPositionMessage;
 
 namespace Tankmageddon.Nagibator.BehaviourModules
@@ -12,12 +13,22 @@ namespace Tankmageddon.Nagibator.BehaviourModules
             Console.WriteLine($"{nameof(AttackTargetModule)}: Got new target {message[Name]}");
 
             me.Target = message[Name];
-            var x = double.Parse(message[X]);
-            var y = double.Parse(message[Y]);
+            me.TargetPoint = new Point
+            {
+                X = double.Parse(message[X]),
+                Y = double.Parse(message[Y])
+            };
+            Action(me);
+        }
 
-            var angleToTarget = Math.Atan2(x, y);
-            var targetAngle = Utils.NormalRelativeAngle(angleToTarget - me.HeadingRadians);
-            //me.SetTurnRightRadians(targetAngle);
+        public static void Action(NagibatorTank me)
+        {
+            if (me.TargetPoint == null)
+                Console.WriteLine($"{nameof(AttackTargetModule)}: no target!");
+            var angleToTarget = Math.Atan2(me.TargetPoint.X - me.X, me.TargetPoint.Y - me.Y);
+            var targetAngle = Utils.NormalRelativeAngle(angleToTarget - me.HeadingRadians) - 90;
+            Console.WriteLine($"{nameof(AttackTargetModule)}: turning to {targetAngle}");
+            me.SetTurnRightRadians(targetAngle);
         }
     }
 }
