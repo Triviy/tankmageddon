@@ -1,5 +1,6 @@
 ﻿using System;
 using Robocode;
+using Tankmageddon.Nagibator.BehaviourModules;
 using Tankmageddon.Nagibator.EventModules;
 
 namespace Tankmageddon.Nagibator
