@@ -27,8 +27,8 @@ namespace Tankmageddon.Nagibator.BehaviourModules
                         break;
                 }
             }
-            me.TurnLeft(me.Heading - 90);
-            me.TurnGunRight(90);
+            me.TurnLeft(me.Heading - 15);
+            //me.TurnGunRight(90);
         }
     }
 }

@@ -54,6 +54,7 @@
     <Compile Include="BehaviourModules\LoopingModule.cs" />
     <Compile Include="BehaviourModules\StartModule.cs" />
     <Compile Include="Helpers\CoordHelper.cs" />
+    <Compile Include="Helpers\FireHelper.cs" />
     <Compile Include="Helpers\MessageHelper.cs" />
     <Compile Include="NagibatorTank.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

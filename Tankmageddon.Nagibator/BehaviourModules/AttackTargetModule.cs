@@ -25,10 +25,12 @@ namespace Tankmageddon.Nagibator.BehaviourModules
         {
             if (me.TargetPoint == null)
                 Console.WriteLine($"{nameof(AttackTargetModule)}: no target!");
+
             var angleToTarget = Math.Atan2(me.TargetPoint.X - me.X, me.TargetPoint.Y - me.Y);
-            var targetAngle = Utils.NormalRelativeAngle(angleToTarget - me.HeadingRadians) - 90;
-            Console.WriteLine($"{nameof(AttackTargetModule)}: turning to {targetAngle}");
-            me.SetTurnRightRadians(targetAngle);
+
+            me.SetTurnGunRightRadians(Utils.NormalRelativeAngle(angleToTarget - me.GunHeadingRadians));
+            //me.SetTurnRadarLeftRadians(Utils.NormalRelativeAngle(angleToTarget - me.RadarHeadingRadians));
+            me.SetFire(3);
         }
     }
 }

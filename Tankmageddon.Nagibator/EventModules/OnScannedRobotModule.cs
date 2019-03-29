@@ -15,7 +15,7 @@ namespace Tankmageddon.Nagibator.EventModules
             {
                 if (me.IsTeammate(e.Name))
                     return;
-                var enemyPos = CoordHelper.GetEnemyCoordinate(me.Heading, me.Status, e);
+                var enemyPosition = CoordHelper.GetEnemyCoordinate(me.Heading, me.Status, e);
                 if (string.IsNullOrWhiteSpace(me.Target))
                 {
                     Console.WriteLine($"{nameof(OnMessageReceivedModule)}: Setting team target {e.Name}");
@@ -25,16 +25,16 @@ namespace Tankmageddon.Nagibator.EventModules
                     {
                         [Constants.MessageType] = Constants.EnemyPositionMessage.Type,
                         [Name] = e.Name,
-                        [X] = enemyPos.X.ToString(CultureInfo.InvariantCulture),
-                        [Y] = enemyPos.Y.ToString(CultureInfo.InvariantCulture)
+                        [X] = enemyPosition.X.ToString(CultureInfo.InvariantCulture),
+                        [Y] = enemyPosition.Y.ToString(CultureInfo.InvariantCulture)
                     });
                 }
 
                 if (me.Target.Equals(e.Name))
                 {
                     Console.WriteLine($"{nameof(OnMessageReceivedModule)}: Fire to {e.Name}");
-                    me.Fire(3);
-                    me.TargetPoint = enemyPos;
+                    me.Fire(FireHelper.GetFirePower(e, me.TargetPoint, enemyPosition));
+                    me.TargetPoint = enemyPosition;
                 }
             }
             catch (Exception ex)
