@@ -44,9 +44,11 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BehaviourModules\AttackTargetModule.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Entities\Point.cs" />
     <Compile Include="EventModules\OnMessageReceivedModule.cs" />
+    <Compile Include="EventModules\OnRobotDeathModule.cs" />
     <Compile Include="EventModules\OnScannedRobotModule.cs" />
     <Compile Include="EventModules\OnStatusModule.cs" />
     <Compile Include="BehaviourModules\LoopingModule.cs" />

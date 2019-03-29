@@ -16,19 +16,31 @@ namespace Tankmageddon.Nagibator.EventModules
                 if (me.IsTeammate(e.Name))
                     return;
                 var enemyPos = CoordHelper.GetEnemyCoordinate(me.Heading, me.Status, e);
-                MessageHelper.SendMessage(me, new Dictionary<string, string>
+                if (string.IsNullOrWhiteSpace(me.Target))
                 {
-                    [Constants.MessageType] = Constants.EnemyPositionMessage.Type,
-                    [Name] = e.Name,
-                    [X] = enemyPos.X.ToString(CultureInfo.InvariantCulture),
-                    [Y] = enemyPos.Y.ToString(CultureInfo.InvariantCulture)
-                });
+                    Console.WriteLine($"{nameof(OnMessageReceivedModule)}: Setting team target {e.Name}");
+                    me.Target = e.Name;
+
+                    MessageHelper.SendMessage(me, new Dictionary<string, string>
+                    {
+                        [Constants.MessageType] = Constants.EnemyPositionMessage.Type,
+                        [Name] = e.Name,
+                        [X] = enemyPos.X.ToString(CultureInfo.InvariantCulture),
+                        [Y] = enemyPos.Y.ToString(CultureInfo.InvariantCulture)
+                    });
+                }
+
+                if (me.Target.Equals(e.Name))
+                {
+                    Console.WriteLine($"{nameof(OnMessageReceivedModule)}: Fire to {e.Name}");
+                    me.SetFire(3);
+                    me.TargetPoint = enemyPos;
+                }
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.ToString());
+                Console.WriteLine($"{nameof(OnMessageReceivedModule)}: {ex}");
             }
-            me.SetFire(3);
         }
     }
 }
