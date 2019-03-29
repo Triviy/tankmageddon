@@ -6,16 +6,16 @@ namespace Tankmageddon.Nagibator.Helpers
 {
     public static class FireHelper
     {
-        public static double GetFirePower(ScannedRobotEvent e, Point oldTargetPosition, Point newTargetPosition)
+        public static double GetFirePower(NagibatorTank me, ScannedRobotEvent e, Point newTargetPosition)
         {
             double firePower = Math.Min(400 / e.Distance, 3);
 
-            if (oldTargetPosition == null || newTargetPosition == null) return firePower;
+            if (me.TargetPoint == null || newTargetPosition == null) return firePower;
 
-            if (IsTheSamePosition(oldTargetPosition, newTargetPosition) || e.Energy == 0)
-            {
-                firePower = 3;
-            }
+            if (IsTheSamePosition(me.TargetPoint, newTargetPosition) || e.Energy < 3)
+                return 3;
+            if (Math.Abs(Math.Abs(e.Heading) - Math.Abs(me.GunHeading)) < 3)
+                return firePower * 1.5;
             return firePower;
         }
 

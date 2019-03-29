@@ -31,14 +31,15 @@ namespace Tankmageddon.Nagibator.EventModules
                     me.SetTurnRadarRight(2.0 * Utils.NormalRelativeAngleDegrees(me.Heading + e.Bearing - me.RadarHeading));
                     GunModule.Action(me);
                     Console.WriteLine($"{nameof(OnScannedRobotModule)}: Fire to {e.Name}");
-                    me.Fire(FireHelper.GetFirePower(e, me.TargetPoint, enemyPosition));
+                    me.Fire(FireHelper.GetFirePower(me, e, enemyPosition));
 
                     MessageHelper.SendMessage(me, new Dictionary<string, string>
                     {
                         [Constants.MessageType] = Constants.EnemyPositionMessage.Type,
                         [Name] = e.Name,
                         [X] = enemyPosition.X.ToString(CultureInfo.InvariantCulture),
-                        [Y] = enemyPosition.Y.ToString(CultureInfo.InvariantCulture)
+                        [Y] = enemyPosition.Y.ToString(CultureInfo.InvariantCulture),
+                        [Bearing] = e.Bearing.ToString(CultureInfo.InvariantCulture)
                     });
 
                     me.TargetPoint = enemyPosition;

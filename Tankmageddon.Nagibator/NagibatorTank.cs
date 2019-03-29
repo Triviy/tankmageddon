@@ -10,13 +10,19 @@ namespace Tankmageddon.Nagibator
     {
         public string Target { get; set; }
         public Point TargetPoint { get; set; }
+        public double TargetBearing { get; set; }
+
+        public bool IsMoovingToEnemy { get; set; }
+
         public RobotStatus Status { get; set; }
         public int CurrentEnemiesAlive { get; set; }
+        public int MoveDirection { get; set; } = 1;
 
         public override void OnScannedRobot(ScannedRobotEvent e) => OnScannedRobotModule.Action(this, e);
         public override void OnStatus(StatusEvent e) => OnStatusModule.Action(this, e);
         public override void OnMessageReceived(MessageEvent e) => OnMessageReceivedModule.Action(this, e);
         public override void OnRobotDeath(RobotDeathEvent e) => OnRobotDeathModule.Action(this, e);
+        public override void OnCustomEvent(CustomEvent e) => OnCustomEventModule.Action(this, e);
 
         public override void Run()
         {

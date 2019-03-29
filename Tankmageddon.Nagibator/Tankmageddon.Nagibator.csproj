@@ -47,6 +47,7 @@
     <Compile Include="BehaviourModules\GunModule.cs" />
     <Compile Include="Constants.cs" />
     <Compile Include="Entities\Point.cs" />
+    <Compile Include="EventModules\OnCustomEventModule.cs" />
     <Compile Include="EventModules\OnMessageReceivedModule.cs" />
     <Compile Include="EventModules\OnRobotDeathModule.cs" />
     <Compile Include="EventModules\OnScannedRobotModule.cs" />
