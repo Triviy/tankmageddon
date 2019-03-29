@@ -8,10 +8,11 @@ namespace Tankmageddon.Nagibator.BehaviourModules
 {
     public static class AttackTargetModule
     {
-        public static void Action(NagibatorTank me, Dictionary<string, string> message)
+        public static void NewTargetAction(NagibatorTank me, Dictionary<string, string> message)
         {
             Console.WriteLine($"{nameof(AttackTargetModule)}: Got new target {message[Name]}");
-
+            if (!string.IsNullOrWhiteSpace(me.Target))
+                return;
             me.Target = message[Name];
             me.TargetPoint = new Point
             {
@@ -28,9 +29,10 @@ namespace Tankmageddon.Nagibator.BehaviourModules
 
             var angleToTarget = Math.Atan2(me.TargetPoint.X - me.X, me.TargetPoint.Y - me.Y);
 
+            //me.SetTurnRightRadians(Utils.NormalRelativeAngle(angleToTarget - me.HeadingRadians));
             me.SetTurnGunRightRadians(Utils.NormalRelativeAngle(angleToTarget - me.GunHeadingRadians));
+            me.Fire(3);
             //me.SetTurnRadarLeftRadians(Utils.NormalRelativeAngle(angleToTarget - me.RadarHeadingRadians));
-            me.SetFire(3);
         }
     }
 }
