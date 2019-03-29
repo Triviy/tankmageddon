@@ -44,8 +44,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Entities\Point.cs" />
+    <Compile Include="EventModules\OnMessageReceivedModule.cs" />
     <Compile Include="EventModules\OnScannedRobotModule.cs" />
     <Compile Include="EventModules\OnStatusModule.cs" />
+    <Compile Include="EventModules\LoopingModule.cs" />
+    <Compile Include="EventModules\StartModule.cs" />
     <Compile Include="Helpers\CoordHelper.cs" />
     <Compile Include="NagibatorTank.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
