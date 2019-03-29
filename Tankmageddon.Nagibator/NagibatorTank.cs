@@ -11,6 +11,7 @@ namespace Tankmageddon.Nagibator
         public string Target { get; set; }
         public Point TargetPoint { get; set; }
         public RobotStatus Status { get; set; }
+        public int CurrentEnemiesAlive { get; set; }
 
         public override void OnScannedRobot(ScannedRobotEvent e) => OnScannedRobotModule.Action(this, e);
         public override void OnStatus(StatusEvent e) => OnStatusModule.Action(this, e);

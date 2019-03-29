@@ -7,12 +7,15 @@ namespace Tankmageddon.Nagibator.BehaviourModules
     {
         public static void Action(NagibatorTank me)
         {
+            Console.WriteLine("Loop started");
+
             me.SetTurnRadarRight(double.PositiveInfinity);
 
-            if (me.GetRobotDeathEvents()?.Any(e => e.Name.Equals(me.Target)) == true)
+            if (me.CurrentEnemiesAlive != me.Others)
+            {
                 me.Target = null;
-
-            Console.WriteLine("Loop started");
+                me.CurrentEnemiesAlive = me.Others;
+            }
 
             if (!string.IsNullOrWhiteSpace(me.Target))
             {

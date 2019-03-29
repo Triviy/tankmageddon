@@ -28,6 +28,7 @@ namespace Tankmageddon.Nagibator.BehaviourModules
                 }
             }
 
+            me.CurrentEnemiesAlive = me.Others;
             me.IsAdjustRadarForGunTurn = false;
             me.TurnLeft(me.Heading - 15);
         }

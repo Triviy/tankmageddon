@@ -17,6 +17,8 @@ namespace Tankmageddon.Nagibator.EventModules
             {
                 if (me.IsTeammate(e.Name))
                     return;
+                Console.WriteLine($"{nameof(OnScannedRobotModule)}: spotted [{e.Name}]. My target is [{me.Target}]");
+
                 var enemyPosition = CoordHelper.GetEnemyCoordinate(me.Heading, me.Status, e);
                 if (string.IsNullOrWhiteSpace(me.Target))
                 {
